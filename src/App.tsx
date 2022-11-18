@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useEffect, useState } from 'react'
+import { query, collection, onSnapshot } from 'firebase/firestore'
 
-function App() {
+import { db } from './firebase'
+import TodoInput from './components/TodoIput/TodoInput'
+
+import './App.css'
+import Task from './components/Task/Task'
+
+const App: FC = () => {
+  const [todos, setTodos] = useState<any[]>([])
+
+  useEffect(() => {
+    const q = query(collection(db, 'todos'))
+    const unsuscribe = onSnapshot(q, (querySnapshot) => {
+      let todosArr: any[] = []
+      querySnapshot.forEach((doc) => {
+        todosArr.push({ ...doc.data(), id: doc.id })
+      })
+      setTodos(todosArr)
+    })
+  }, [])
+
+  console.log(todos)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Todo List</h1>
+      <TodoInput />
+      <button type="button" onClick={() => 'Submit'}>
+        Отправить
+      </button>
+      <div>
+        <p>Current tasks</p>
+        <div>
+          {todos.length
+            ? todos.map((todo) => (
+                <Task key={todo.id} data={todo.text} onChange={() => {}} />
+              ))
+            : 'Нет задач'}
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
