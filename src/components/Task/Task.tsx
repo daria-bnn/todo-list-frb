@@ -1,17 +1,30 @@
 import { FC } from 'react'
+import TTask from '../../types'
 
 type TaskProps = {
-  data: string
-  onChange: () => void
+  data: TTask
+  toggleComplete: (data: TTask) => void
+  onDelete: (id: string) => void
 }
 
-const Task: FC<TaskProps> = ({ data, onChange }) => {
+const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
+  const handleToggle = () => {
+    toggleComplete(data)
+  }
+
+  const handleDelete = () => {
+    onDelete(data.id)
+  }
   return (
     <div>
-      <div>{data}</div>
+      <div>{data.text}</div>
       <div>
-        <button>Удалить</button>
-        <button>Выполнить</button>
+        <button onClick={handleDelete}>Удалить</button>
+        {!data.completed ? (
+          <button onClick={handleToggle}>Выполнить</button>
+        ) : (
+          <button onClick={handleToggle}>Отменить выполнение</button>
+        )}
       </div>
     </div>
   )

@@ -1,6 +1,10 @@
 import { FC, useState } from 'react'
 
-const TodoInput: FC = () => {
+type TodoInputProps = {
+  onCreate: (value: string, completed: boolean) => void
+}
+
+const TodoInput: FC<TodoInputProps> = ({ onCreate }) => {
   const [value, setValue] = useState('')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -8,10 +12,15 @@ const TodoInput: FC = () => {
     setValue(target.value)
   }
 
+  const handleCreateTask = () => {
+    onCreate(value, false)
+    setValue('')
+  }
+
   return (
     <div>
       <input name="task" value={value} onChange={handleChange} />
-      <button>Добавить</button>
+      <button onClick={handleCreateTask}>Добавить</button>
     </div>
   )
 }
