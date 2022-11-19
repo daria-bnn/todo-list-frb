@@ -15,6 +15,7 @@ import TodoInput from './components/TodoIput/TodoInput'
 import Task from './components/Task/Task'
 
 import './App.css'
+import { stringify } from 'querystring'
 
 const App: FC = () => {
   const [todos, setTodos] = useState<TTask[]>([])
@@ -27,8 +28,9 @@ const App: FC = () => {
       querySnapshot.forEach((doc) => {
         const text = doc.data().text
         const completed = doc.data().completed
+        const url = doc.data().url
 
-        todosArr.push({ text, completed, id: doc.id })
+        todosArr.push({ text, completed, url, id: doc.id })
       })
       setTodos(todosArr)
     })
@@ -37,10 +39,15 @@ const App: FC = () => {
   }, [])
 
   //создание записи
-  const handleCreate = async (value: string, completed: boolean) => {
+  const handleCreate = async (
+    value: string,
+    completed: boolean,
+    url?: string
+  ) => {
     await addDoc(collection(db, 'todos'), {
       text: value,
       completed: false,
+      url: url,
     })
   }
 
@@ -56,19 +63,23 @@ const App: FC = () => {
     })
   }
 
+  console.log(todos)
+
   return (
     <div className="App">
       <h1>Todo List</h1>
-      <TodoInput onCreate={handleCreate}/>
-      <button type="button" onClick={() => 'Submit'}>
-        Отправить
-      </button>
+      <TodoInput onCreate={handleCreate} />
       <div>
         <p>Current tasks</p>
         <div>
           {todos.length
             ? todos.map((todo) => (
-                <Task key={todo.id} data={todo} toggleComplete={handleToggle} onDelete={handleDelete}/>
+                <Task
+                  key={todo.id}
+                  data={todo}
+                  toggleComplete={handleToggle}
+                  onDelete={handleDelete}
+                />
               ))
             : 'Нет задач'}
         </div>

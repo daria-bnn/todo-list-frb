@@ -1,5 +1,7 @@
 import { FC } from 'react'
 import TTask from '../../types'
+import { getStorage, ref, deleteObject } from 'firebase/storage'
+import { storage } from '../../firebase'
 
 type TaskProps = {
   data: TTask
@@ -13,6 +15,13 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
   }
 
   const handleDelete = () => {
+    // Delete the file
+    const desertRef = ref(storage, data.url)
+
+    console.log('desertRef.name ----->   ', desertRef.name)
+    deleteObject(desertRef).then(() => {
+      console.log('файл также удален из хранилища')
+    })
     onDelete(data.id)
   }
   return (
