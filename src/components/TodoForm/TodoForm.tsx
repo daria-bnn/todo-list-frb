@@ -12,6 +12,7 @@ type TodoInputProps = {
     header: string,
     description: string,
     file: string,
+    deadline: string,
     completed: boolean
   ) => void
 }
@@ -66,11 +67,13 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
   const handleSubmitTask = (event: React.FormEvent) => {
     event.preventDefault()
 
-    const { header, description, file } = form
+    const { header, description, file, deadline } = form
 
-    onCreate(header, description, file, false)
-    //!! очистить поля ввода 
+    onCreate(header, description, file, deadline, false)
+    //!! очистить поля ввода
   }
+
+  console.log(form)
 
   return (
     <form className={cnTodoForm()} onSubmit={handleSubmitTask}>

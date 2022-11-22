@@ -1,0 +1,95 @@
+.Task {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 8px;
+
+  color: #fff;
+
+  border: 1px solid #696969;
+  border-radius: 8px;
+}
+
+.Task-Data {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  text-align: left;
+}
+
+.Task-DataDaedline {
+  width: 60px;
+  margin: 0;
+  padding: 4px;
+
+  color: #669e85;
+
+  font-size: 12px;
+  text-align: center;
+
+  /* background-color: #669e85; */
+
+  border: 0.5px solid #669e85;
+  border-radius: 4px;
+}
+
+.Task-DataHeader {
+  margin: 0;
+}
+
+.Task-DataDescription {
+  margin: 0;
+}
+
+.Task-DataButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 140px;
+  padding: 6px;
+
+  color: #696969;
+
+  background: none;
+  border: 1px solid #696969;
+
+  border-radius: 6px;
+
+  transition: all 0.3s ease;
+}
+
+.Task-DataButton:hover {
+  color: #669e85;
+
+  border-color: #669e85;
+}
+
+.Task-DataIcon {
+}
+
+.Task-Nav {
+  flex: 0 0 100px;
+}
+
+.Task-NavButton {
+  background-color: transparent;
+  border: none;
+}
+
+.Task-NavIcon {
+  color: #696969;
+  font-size: 18px;
+
+  transition: color 0.3s ease;
+}
+
+.Task-NavIcon_completed {
+  color: #669e85;
+}
+
+.Task-NavIcon:hover {
+  color: #cd9d6d;
+
+  cursor: pointer;
+}

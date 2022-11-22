@@ -16,3 +16,9 @@
   font-size: 32px;
   letter-spacing: 4px;
 }
+
+.TodoList-Tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}

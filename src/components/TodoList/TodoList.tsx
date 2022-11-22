@@ -33,11 +33,20 @@ const TodoList: FC = () => {
     const unsuscribe = onSnapshot(q, (querySnapshot) => {
       let todosArr: TTask[] = []
       querySnapshot.forEach((doc) => {
-        const text = doc.data().text
+        const header = doc.data().header
+        const description = doc.data().description
         const completed = doc.data().completed
-        const url = doc.data().url
+        const file = doc.data().file
+        const deadline = doc.data().deadline
 
-        todosArr.push({ text, completed, url, id: doc.id })
+        todosArr.push({
+          header,
+          description,
+          completed,
+          file,
+          deadline,
+          id: doc.id,
+        })
       })
       setTodos(todosArr)
     })
@@ -55,12 +64,14 @@ const TodoList: FC = () => {
     header: string,
     description: string,
     file: string,
+    deadline: string,
     completed: boolean
   ) => {
     await addDoc(collection(db, 'todos'), {
       header,
       description,
       file,
+      deadline,
       completed: false,
     })
   }
@@ -85,7 +96,7 @@ const TodoList: FC = () => {
       <TodoForm onCreate={handleCreate} />
       <div>
         <p>Current tasks</p>
-        <div>
+        <div className={cnTodoList('Tasks')}>
           {todos.length
             ? todos.map((todo) => (
                 <Task

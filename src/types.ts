@@ -3,6 +3,7 @@ type TTask = {
   header: string
   description: string
   completed: boolean
+  deadline: string
   file?: string
 }
 
