@@ -11,13 +11,36 @@ type TodoInputProps = {
   onCreate: (value: string, completed: boolean, url: string) => void
 }
 
+// type-garden
+function isTextAreaElement(
+  element: HTMLInputElement | HTMLTextAreaElement
+): element is HTMLTextAreaElement {
+  return element.tagName === 'TEXTAREA'
+}
+
 const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
+  const [form, setForm] = useState({
+    header: '',
+    description: '',
+    file: '',
+    deadline: '2022-12-31',
+  })
   const [value, setValue] = useState('')
   const [url, setUrl] = useState('')
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { target } = event
-    setValue(target.value)
+    if (isTextAreaElement(target)) {
+      setForm((prev) => ({ ...prev, [target.name]: target.value }))
+
+      return
+    }
+    setForm((prev) => ({
+      ...prev,
+      [target.name]: target.value,
+    }))
   }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,17 +66,23 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
     setUrl('')
   }
 
+  console.log(form);
+  
+
   return (
     <form className={cnTodoForm()} onSubmit={handleCreateTask}>
       <input
         className={cnTodoForm('Input')}
         type="text"
-        name="task"
+        name="header"
         placeholder="Введите заголовок"
-        value={value}
-        onChange={handleChange}
+        value={form.header}
+        onChange={handleInputChange}
       />
       <textarea
+        name="description"
+        value={form.description}
+        onChange={handleInputChange}
         placeholder="Введите подробное описание"
         className={cnTodoForm('Textarea')}
       />
@@ -63,9 +92,10 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
           Выберите файл
           <input
             id="file"
+            value={form.file}
             className={cnTodoForm('FileInput')}
             type="file"
-            onChange={handleFileChange}
+            onChange={handleInputChange}
             name="file"
           />
         </label>
@@ -76,13 +106,16 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
           className={cnTodoForm('DateInput')}
           id="date"
           type="date"
-          name="trip-start"
-          value="2022-12-31"
+          name="deadline"
+          value={form.deadline}
+          onChange={handleInputChange}
           min="2022-01-01"
           max="2040-12-31"
         />
       </div>
-      <button className={cnTodoForm('Button')} type="submit">Добавить задачу</button>
+      <button className={cnTodoForm('Button')} type="submit">
+        Добавить задачу
+      </button>
     </form>
   )
 }
