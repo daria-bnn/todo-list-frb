@@ -1,5 +1,12 @@
 .App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 40px calc(50% - 600px) 60px calc(50% - 600px);
+
   text-align: center;
+
+  background-color: #cd9d6d;
 }
-
-
