@@ -1,8 +1,9 @@
 type TTask = {
   id: string
-  text: string
+  header: string
+  description: string
   completed: boolean
-  url?: string
+  file?: string
 }
 
 export default TTask

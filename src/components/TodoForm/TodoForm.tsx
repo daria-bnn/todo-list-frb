@@ -8,7 +8,12 @@ import cnTodoForm from './TodoForm.classname'
 import './TodoForm.css'
 
 type TodoInputProps = {
-  onCreate: (value: string, completed: boolean, url: string) => void
+  onCreate: (
+    header: string,
+    description: string,
+    file: string,
+    completed: boolean
+  ) => void
 }
 
 // type-garden
@@ -58,19 +63,17 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
     }
   }
 
-  const handleCreateTask = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitTask = (event: React.FormEvent) => {
     event.preventDefault()
 
-    onCreate(value, false, url)
-    setValue('')
-    setUrl('')
+    const { header, description, file } = form
+
+    onCreate(header, description, file, false)
+    //!! очистить поля ввода 
   }
 
-  console.log(form);
-  
-
   return (
-    <form className={cnTodoForm()} onSubmit={handleCreateTask}>
+    <form className={cnTodoForm()} onSubmit={handleSubmitTask}>
       <input
         className={cnTodoForm('Input')}
         type="text"

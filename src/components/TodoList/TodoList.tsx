@@ -52,14 +52,16 @@ const TodoList: FC = () => {
 
   //создание записи
   const handleCreate = async (
-    value: string,
-    completed: boolean,
-    url?: string
+    header: string,
+    description: string,
+    file: string,
+    completed: boolean
   ) => {
     await addDoc(collection(db, 'todos'), {
-      text: value,
+      header,
+      description,
+      file,
       completed: false,
-      url: url,
     })
   }
 
