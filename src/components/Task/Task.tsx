@@ -1,18 +1,18 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { ref, deleteObject } from 'firebase/storage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCanArrowUp } from '@fortawesome/free-solid-svg-icons/faTrashCanArrowUp'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons/faCircleCheck'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons/faPenToSquare'
 import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload'
+import dayjs from 'dayjs'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 
 import cnTask from './Task.classname'
 import TTask from '../../types'
 import { storage } from '../../firebase'
 
 import './Task.css'
-
-const icon = 'fa-regular fa-circle-trash'
 
 type TaskProps = {
   data: TTask
@@ -21,6 +21,26 @@ type TaskProps = {
 }
 
 const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
+  const [isValidData, setIsValidData] = useState(true)
+
+  useEffect(() => {
+    const today = dayjs().format('DD.MM.YYYY')
+
+    dayjs.extend(isSameOrBefore)
+
+    console.log(dayjs())
+
+    const checkDay = dayjs().isSameOrBefore(dayjs(data.deadline))
+
+    if (checkDay) {
+      setIsValidData(true)
+    } else {
+      setIsValidData(false)
+    }
+  }, [])
+
+  console.log(isValidData)
+
   const handleToggle = () => {
     toggleComplete(data)
   }
@@ -31,23 +51,26 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
     if (data.file) {
       const desertRef = ref(storage, data.file)
 
-      console.log('desertRef.name ----->   ', desertRef.name)
-      deleteObject(desertRef).then(() => {
-        console.log('файл также удален из хранилища')
-      })
+      deleteObject(desertRef).then(() => {})
     }
 
     onDelete(data.id)
   }
+
+  const deadline = dayjs(data.deadline).format('DD.MM.YYYY')
+
   return (
-    <div className={cnTask()}>
+    <div className={cnTask({ deadline: !isValidData })}>
       <div className={cnTask('Data')}>
-        <div className={cnTask('DataDaedline')}>{data.deadline}</div>
+        <div className={cnTask('DataDaedline', { deadline: !isValidData })}>
+          {deadline}
+        </div>
         <h3 className={cnTask('DataHeader')}>{data.header}</h3>
         <p className={cnTask('DataDescription')}>{data.description}</p>
         {data.file ? (
           <button className={cnTask('DataButton')}>
             <div>Скачать файлы</div>
+            <a download={data.file}>скачать</a>
             <FontAwesomeIcon className={cnTask('DataIcon')} icon={faDownload} />
           </button>
         ) : null}

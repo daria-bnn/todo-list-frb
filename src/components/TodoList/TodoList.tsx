@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import dayjs from 'dayjs'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 import {
   query,
   collection,
@@ -26,18 +27,12 @@ const TodoList: FC = () => {
 
     const data = dayjs().format()
 
-    console.log(data)
-
     //получение данных из базы
     const q = query(collection(db, 'todos'))
     const unsuscribe = onSnapshot(q, (querySnapshot) => {
       let todosArr: TTask[] = []
       querySnapshot.forEach((doc) => {
-        const header = doc.data().header
-        const description = doc.data().description
-        const completed = doc.data().completed
-        const file = doc.data().file
-        const deadline = doc.data().deadline
+        const { header, description, completed, file, deadline } = doc.data()
 
         todosArr.push({
           header,
@@ -73,7 +68,7 @@ const TodoList: FC = () => {
       file,
       deadline,
       completed: false,
-    })
+    }).then(() => console.log('GREAT'))
   }
 
   //удаление записи
@@ -87,8 +82,6 @@ const TodoList: FC = () => {
       completed: !todo.completed,
     })
   }
-
-  console.log(todos)
 
   return (
     <div className={cnTodoList()}>

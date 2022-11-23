@@ -6,8 +6,12 @@
 
   color: #fff;
 
-  border: 1px solid #696969;
+  border: 1px solid #669e85;
   border-radius: 8px;
+}
+
+.Task_deadline {
+  border-color: #c73d3d;
 }
 
 .Task-Data {
@@ -19,19 +23,21 @@
 }
 
 .Task-DataDaedline {
-  width: 60px;
+  width: 70px;
   margin: 0;
   padding: 4px;
 
   color: #669e85;
 
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 
-  /* background-color: #669e85; */
-
-  border: 0.5px solid #669e85;
+  border: 0.5px solid currentcolor;
   border-radius: 4px;
+}
+
+.Task-DataDaedline_deadline {
+  color: #c73d3d;
 }
 
 .Task-DataHeader {
@@ -63,6 +69,7 @@
   color: #669e85;
 
   border-color: #669e85;
+  cursor: pointer;
 }
 
 .Task-DataIcon {
