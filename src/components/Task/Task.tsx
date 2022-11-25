@@ -34,7 +34,6 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
     }
   }, [])
 
-
   const handleToggle = () => {
     toggleComplete(data)
   }
@@ -64,11 +63,16 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
         <h3 className={cnTask('DataHeader')}>{data.header}</h3>
         <p className={cnTask('DataDescription')}>{data.description}</p>
         {data.file ? (
-          <button type="button" className={cnTask('DataButton')}>
-            <div>Скачать файлы</div>
-            {/* <a href={data.file} download="download">скачать</a>
-            <FontAwesomeIcon className={cnTask('DataIcon')} icon={faDownload} /> */}
-          </button>
+          <div className={cnTask('DataWrapperImg')}>
+            <div className={cnTask('DataTitleImg')}>
+              Добавленное изображение
+            </div>
+            <img
+              src={data.file}
+              alt={data.header}
+              className={cnTask('DataImage')}
+            />
+          </div>
         ) : null}
       </div>
       <div className={cnTask('Nav')}>

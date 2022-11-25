@@ -48,31 +48,25 @@
   margin: 0;
 }
 
-.Task-DataButton {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 140px;
-  padding: 6px;
+.Task-DataWrapperImg {
+  width: 220px;
+}
+
+.Task-DataTitleImg {
+  margin-bottom: 6px;
 
   color: #696969;
 
-  background: none;
-  border: 1px solid #696969;
-
-  border-radius: 6px;
-
-  transition: all 0.3s ease;
+  font-size: 14px;
 }
 
-.Task-DataButton:hover {
-  color: #669e85;
+.Task-DataImage {
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  object-fit: cover;
 
-  border-color: #669e85;
-  cursor: pointer;
-}
-
-.Task-DataIcon {
+  border-radius: 8px;
 }
 
 .Task-Nav {
