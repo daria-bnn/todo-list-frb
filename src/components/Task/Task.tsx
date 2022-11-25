@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import { ref, deleteObject } from 'firebase/storage'
+import { ref, deleteObject, getDownloadURL } from 'firebase/storage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCanArrowUp } from '@fortawesome/free-solid-svg-icons/faTrashCanArrowUp'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons/faCircleCheck'
@@ -59,6 +59,8 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
 
   const deadline = dayjs(data.deadline).format('DD.MM.YYYY')
 
+  const a = () => {}
+
   return (
     <div className={cnTask({ deadline: !isValidData })}>
       <div className={cnTask('Data')}>
@@ -68,10 +70,11 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
         <h3 className={cnTask('DataHeader')}>{data.header}</h3>
         <p className={cnTask('DataDescription')}>{data.description}</p>
         {data.file ? (
-          <button className={cnTask('DataButton')}>
+          <button className={cnTask('DataButton')} onClick={a}>
+            <img src={data.file} alt="" />
             <div>Скачать файлы</div>
-            <a download={data.file}>скачать</a>
-            <FontAwesomeIcon className={cnTask('DataIcon')} icon={faDownload} />
+            {/* <a href={data.file} download="download">скачать</a>
+            <FontAwesomeIcon className={cnTask('DataIcon')} icon={faDownload} /> */}
           </button>
         ) : null}
       </div>
