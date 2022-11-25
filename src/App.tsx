@@ -4,12 +4,10 @@ import TodoList from './components/TodoList/TodoList'
 
 import './App.css'
 
-const App: FC = () => {
-  return (
-    <div className="App">
-      <TodoList />
-    </div>
-  )
-}
+const App: FC = () => (
+  <div className="App">
+    <TodoList />
+  </div>
+)
 
 export default App

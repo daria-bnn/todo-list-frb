@@ -1,6 +1,4 @@
 import React, { FC, useEffect, useState } from 'react'
-import dayjs from 'dayjs'
-import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 import {
   query,
   collection,
@@ -23,16 +21,12 @@ const TodoList: FC = () => {
   const [todos, setTodos] = useState<TTask[]>([])
 
   useEffect(() => {
-    //получение даты
-
-    const data = dayjs().format()
-
-    //получение данных из базы
+    // получение данных из базы
     const q = query(collection(db, 'todos'))
     const unsuscribe = onSnapshot(q, (querySnapshot) => {
-      let todosArr: TTask[] = []
-      querySnapshot.forEach((doc) => {
-        const { header, description, completed, file, deadline } = doc.data()
+      const todosArr: TTask[] = []
+      querySnapshot.forEach((result) => {
+        const { header, description, completed, file, deadline } = result.data()
 
         todosArr.push({
           header,
@@ -40,7 +34,7 @@ const TodoList: FC = () => {
           completed,
           file,
           deadline,
-          id: doc.id,
+          id: result.id,
         })
       })
       setTodos(todosArr)
@@ -49,18 +43,12 @@ const TodoList: FC = () => {
     return () => unsuscribe()
   }, [])
 
-  useEffect(() => {
-    //проверка времени
-    console.log('обновление todos')
-  }, [todos])
-
-  //создание записи
+  // создание записи
   const handleCreate = async (
     header: string,
     description: string,
     file: string,
-    deadline: string,
-    completed: boolean
+    deadline: string
   ) => {
     await addDoc(collection(db, 'todos'), {
       header,
@@ -68,15 +56,15 @@ const TodoList: FC = () => {
       file,
       deadline,
       completed: false,
-    }).then(() => console.log('GREAT'))
+    }).then(() => console.log('Create task!'))
   }
 
-  //удаление записи
+  // удаление записи
   const handleDelete = async (id: string) => {
     await deleteDoc(doc(db, 'todos', id))
   }
 
-  //изменение статуса
+  // изменение статуса
   const handleToggle = async (todo: TTask) => {
     await updateDoc(doc(db, 'todos', todo.id), {
       completed: !todo.completed,

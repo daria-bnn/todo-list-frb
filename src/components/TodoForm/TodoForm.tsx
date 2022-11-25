@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { FC, useEffect, useState } from 'react'
 import {
   ref,
@@ -7,11 +8,11 @@ import {
 } from 'firebase/storage'
 import { v4 } from 'uuid'
 
+import { isTextAreaElement } from '../../types'
 import { storage } from '../../firebase'
 import cnTodoForm from './TodoForm.classname'
 
 import './TodoForm.css'
-import { isTextAreaElement } from '../../types'
 
 type TodoInputProps = {
   onCreate: (
@@ -35,7 +36,7 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
   const [url, setUrl] = useState('')
 
   useEffect(() => {
-    //блокировка кнопки, если не введены поля загловка и описания
+    // блокировка кнопки, если не введены поля загловка и описания
     if (form.header && form.description) {
       setIsValid(true)
     } else {
@@ -75,16 +76,16 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event
 
-    //делаем компонент контролируемым
+    // делаем компонент контролируемым
     setForm((prev) => ({
       ...prev,
       [target.name]: target.value,
     }))
 
-    //извлекаем файл и отправляем в storage
+    // извлекаем файл и отправляем в storage
     const file = target.files
 
-    //блокируем кнопку на время добавления
+    // блокируем кнопку на время добавления
     if (file) {
       setIsLoad(true)
 
@@ -92,10 +93,10 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
       const imageRef = ref(storage, `todos/${currentFile.name + v4()}`)
 
       uploadBytes(imageRef, currentFile).then((snapshot) => {
-        getDownloadURL(snapshot.ref).then((url) => {
+        getDownloadURL(snapshot.ref).then((urlFile) => {
           setIsLoad(false)
 
-          setUrl(url)
+          setUrl(urlFile)
         })
       })
     }
@@ -140,6 +141,7 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
         </p>
         {url ? (
           <button
+            type="button"
             className={cnTodoForm('FileButton')}
             onClick={handleFileDelete}
           >

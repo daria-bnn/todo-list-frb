@@ -1,10 +1,9 @@
 import { FC, useEffect, useState } from 'react'
-import { ref, deleteObject, getDownloadURL } from 'firebase/storage'
+import { ref, deleteObject } from 'firebase/storage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCanArrowUp } from '@fortawesome/free-solid-svg-icons/faTrashCanArrowUp'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons/faCircleCheck'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons/faPenToSquare'
-import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload'
 import dayjs from 'dayjs'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 
@@ -24,11 +23,7 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
   const [isValidData, setIsValidData] = useState(true)
 
   useEffect(() => {
-    const today = dayjs().format('DD.MM.YYYY')
-
     dayjs.extend(isSameOrBefore)
-
-    console.log(dayjs())
 
     const checkDay = dayjs().isSameOrBefore(dayjs(data.deadline))
 
@@ -39,7 +34,6 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
     }
   }, [])
 
-  console.log(isValidData)
 
   const handleToggle = () => {
     toggleComplete(data)
@@ -47,19 +41,19 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
 
   // Delete the file
   const handleDelete = () => {
-    //удаление из firebase-storage
+    // удаление из firebase-storage
     if (data.file) {
       const desertRef = ref(storage, data.file)
 
-      deleteObject(desertRef).then(() => {})
+      deleteObject(desertRef).then(() => {
+        console.log('delete file from storage')
+      })
     }
 
     onDelete(data.id)
   }
 
   const deadline = dayjs(data.deadline).format('DD.MM.YYYY')
-
-  const a = () => {}
 
   return (
     <div className={cnTask({ deadline: !isValidData })}>
@@ -70,8 +64,7 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
         <h3 className={cnTask('DataHeader')}>{data.header}</h3>
         <p className={cnTask('DataDescription')}>{data.description}</p>
         {data.file ? (
-          <button className={cnTask('DataButton')} onClick={a}>
-            <img src={data.file} alt="" />
+          <button type="button" className={cnTask('DataButton')}>
             <div>Скачать файлы</div>
             {/* <a href={data.file} download="download">скачать</a>
             <FontAwesomeIcon className={cnTask('DataIcon')} icon={faDownload} /> */}
@@ -79,7 +72,11 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
         ) : null}
       </div>
       <div className={cnTask('Nav')}>
-        <button className={cnTask('NavButton')} onClick={handleToggle}>
+        <button
+          type="button"
+          className={cnTask('NavButton')}
+          onClick={handleToggle}
+        >
           <FontAwesomeIcon
             className={cnTask(
               'NavIcon',
@@ -89,10 +86,14 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
           />
         </button>
 
-        <button className={cnTask('NavButton')}>
+        <button type="button" className={cnTask('NavButton')}>
           <FontAwesomeIcon icon={faPenToSquare} className={cnTask('NavIcon')} />
         </button>
-        <button className={cnTask('NavButton')} onClick={handleDelete}>
+        <button
+          type="button"
+          className={cnTask('NavButton')}
+          onClick={handleDelete}
+        >
           <FontAwesomeIcon
             icon={faTrashCanArrowUp}
             className={cnTask('NavIcon')}
