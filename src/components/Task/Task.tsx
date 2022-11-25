@@ -89,10 +89,6 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
             icon={faCircleCheck}
           />
         </button>
-
-        <button type="button" className={cnTask('NavButton')}>
-          <FontAwesomeIcon icon={faPenToSquare} className={cnTask('NavIcon')} />
-        </button>
         <button
           type="button"
           className={cnTask('NavButton')}

@@ -50,7 +50,7 @@
 }
 
 .Task-DataWrapperImg {
-  width: 300px;
+  width: 360px;
 }
 
 .Task-DataTitleImg {
@@ -74,7 +74,7 @@
 }
 
 .Task-Nav {
-  flex: 0 0 100px;
+  flex: 0 0 70px;
 }
 
 .Task-NavButton {
