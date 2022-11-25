@@ -8,6 +8,8 @@
   padding: 8px;
 
   color: #fff;
+  font-size: 16px;
+  font-family: inherit;
 
   background-color: #010101;
   border: 1px solid #696969;
@@ -24,6 +26,8 @@
   padding: 8px;
 
   color: #fff;
+  font-size: 16px;
+  font-family: inherit;
 
   background-color: #010101;
   border: 1px solid #696969;
@@ -144,8 +148,9 @@
   padding: 8px;
 
   color: #696969;
-  font-size: 16px;
-  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  font-family: inherit;
+  letter-spacing: 2px;
 
   background-color: #010101;
   border: 1px solid #696969;
@@ -197,6 +202,7 @@
 
 .TodoForm-Button[disabled] {
   color: #b5b5b5;
+  font-family: Nunito, sans-serif;
 
   background-color: rgb(105, 104, 101, 70%);
   border-color: #696969;

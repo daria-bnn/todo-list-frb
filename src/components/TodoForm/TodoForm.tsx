@@ -137,7 +137,7 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
       />
       <div className={cnTodoForm('File')}>
         <p className={cnTodoForm('FileTitle')}>
-          {form.file || 'Прикрепите файл'}
+          {form.file || 'Прикрепите изображение'}
         </p>
         {url ? (
           <button
@@ -155,6 +155,7 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
               value={form.file}
               className={cnTodoForm('FileInput')}
               type="file"
+              accept=".png, .jpg, .jpeg"
               onChange={handleFileChange}
               name="file"
             />
@@ -179,7 +180,7 @@ const TodoForm: FC<TodoInputProps> = ({ onCreate }) => {
       </div>
       <button
         className={cnTodoForm('Button')}
-        disabled={!isValid}
+        disabled={isLoad || !isValid}
         type="submit"
       >
         Добавить задачу

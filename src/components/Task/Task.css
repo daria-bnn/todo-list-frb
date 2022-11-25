@@ -29,7 +29,8 @@
 
   color: #669e85;
 
-  font-size: 14px;
+  font-size: 12px;
+  letter-spacing: 1px;
   text-align: center;
 
   border: 0.5px solid currentcolor;
@@ -49,7 +50,7 @@
 }
 
 .Task-DataWrapperImg {
-  width: 220px;
+  width: 300px;
 }
 
 .Task-DataTitleImg {
@@ -62,8 +63,11 @@
 
 .Task-DataImage {
   width: 100%;
+
   height: auto;
-  max-height: 240px;
+
+  max-height: 400px;
+
   object-fit: cover;
 
   border-radius: 8px;

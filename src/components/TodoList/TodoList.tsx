@@ -56,7 +56,7 @@ const TodoList: FC = () => {
       file,
       deadline,
       completed: false,
-    }).then(() => console.log('Create task!'))
+    })
   }
 
   // удаление записи
@@ -76,18 +76,20 @@ const TodoList: FC = () => {
       <h1 className={cnTodoList('Title')}>Todo List</h1>
       <TodoForm onCreate={handleCreate} />
       <div>
-        <p>Current tasks</p>
+        <p className={cnTodoList('Header')}>Текущие задачи</p>
         <div className={cnTodoList('Tasks')}>
-          {todos.length
-            ? todos.map((todo) => (
-                <Task
-                  key={todo.id}
-                  data={todo}
-                  toggleComplete={handleToggle}
-                  onDelete={handleDelete}
-                />
-              ))
-            : 'Нет задач'}
+          {todos.length ? (
+            todos.map((todo) => (
+              <Task
+                key={todo.id}
+                data={todo}
+                toggleComplete={handleToggle}
+                onDelete={handleDelete}
+              />
+            ))
+          ) : (
+            <p className={cnTodoList('Info')}>Нет задач</p>
+          )}
         </div>
       </div>
     </div>

@@ -1,5 +1,21 @@
+@font-face {
+  font-weight: 400;
+  font-family: PoiretOne;
+  font-style: normal;
+  src: url('../public/assets/fonts/PoiretOne-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-weight: 400;
+  font-family: Nunito;
+  font-style: normal;
+  src: url('../public/assets/fonts/Nunito-Regular.ttf') format('truetype');
+}
+
 body {
   margin: 0;
+
+  font-family: PoiretOne, sans-serif;
 }
 
 h1 {
