@@ -98,3 +98,9 @@
 
   cursor: pointer;
 }
+
+@media (max-width: 425px) {
+  .Task-DataWrapperImg {
+    width: 220px;
+  }
+}
