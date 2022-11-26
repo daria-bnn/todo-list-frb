@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/todo-list-frb/static/css/main.2b0d7342.css",
+    "main.css": "/todo-list-frb/static/css/main.185e5b19.css",
     "main.js": "/todo-list-frb/static/js/main.8b4331c0.js",
     "static/media/Nunito-Regular.ttf": "/todo-list-frb/static/media/Nunito-Regular.99a3b019e7727ac19479.ttf",
     "static/media/PoiretOne-Regular.ttf": "/todo-list-frb/static/media/PoiretOne-Regular.9bf109e97f6294c6fe2b.ttf",
     "index.html": "/todo-list-frb/index.html",
-    "main.2b0d7342.css.map": "/todo-list-frb/static/css/main.2b0d7342.css.map",
+    "main.185e5b19.css.map": "/todo-list-frb/static/css/main.185e5b19.css.map",
     "main.8b4331c0.js.map": "/todo-list-frb/static/js/main.8b4331c0.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b0d7342.css",
+    "static/css/main.185e5b19.css",
     "static/js/main.8b4331c0.js"
   ]
 }
