@@ -1,0 +1,213 @@
+.TodoForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.TodoForm-Input {
+  padding: 8px;
+
+  color: #fff;
+  font-size: 16px;
+  font-family: inherit;
+
+  background-color: #010101;
+  border: 1px solid #696969;
+  border-radius: 8px;
+  outline: none;
+}
+
+.TodoForm-Input:focus {
+  border-color: #cd9d6d;
+}
+
+.TodoForm-Textarea {
+  min-height: 80px;
+  padding: 8px;
+
+  color: #fff;
+  font-size: 16px;
+  font-family: inherit;
+
+  background-color: #010101;
+  border: 1px solid #696969;
+  border-radius: 8px;
+  outline: none;
+
+  resize: none;
+}
+
+.TodoForm-Textarea:focus {
+  border-color: #cd9d6d;
+}
+
+.TodoForm-File {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TodoForm-FileButton {
+  flex: 0 0 150px;
+  box-sizing: border-box;
+
+  padding: 8px;
+
+  color: #696969;
+  font-size: 16px;
+  font-family: inherit;
+
+  background-color: #010101;
+  border: 1px solid #696969;
+  border-radius: 5px;
+
+  transition: border-color 0.3s ease;
+}
+
+.TodoForm-FileButton:hover {
+  border-color: #cd9d6d;
+  cursor: pointer;
+}
+
+.TodoForm-FileWrapper {
+  position: relative;
+
+  flex: 0 0 150px;
+}
+
+.TodoForm-FileLabel {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+
+  padding: 8px;
+
+  color: #696969;
+  font-size: 16px;
+
+  background-color: #010101;
+  border: 1px solid #696969;
+  border-radius: 5px;
+
+  transition: border-color 0.3s ease;
+}
+
+.TodoForm-FileLabel:hover {
+  border-color: #cd9d6d;
+  cursor: pointer;
+}
+
+.TodoForm-FileInput:disabled ~ .TodoForm-FileLabel {
+  color: #b5b5b5;
+
+  background-color: rgb(105, 104, 101, 70%);
+}
+
+.TodoForm-FileInput:disabled ~ .TodoForm-FileLabel:hover {
+  border-color: #696969;
+  cursor: not-allowed;
+}
+
+.TodoForm-FileTitle {
+  margin: 0;
+  overflow: hidden;
+
+  color: #696969;
+  font-size: 16px;
+  text-align: left;
+
+  pointer-events: none;
+}
+
+.TodoForm-FileInput {
+  position: absolute;
+  top: -1000px;
+}
+
+.TodoForm-FileInput:focus.TodoForm-FileLabel {
+  border: 1px solid #cd9d6d;
+}
+
+.TodoForm-Date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.TodoForm-DateTitle {
+  margin: 0;
+
+  color: #696969;
+  font-size: 16px;
+}
+
+.TodoForm-DateInput {
+  box-sizing: border-box;
+  width: 150px;
+  padding: 8px;
+
+  color: #696969;
+  font-size: 14px;
+  font-family: inherit;
+  letter-spacing: 2px;
+
+  background-color: #010101;
+  border: 1px solid #696969;
+  border-radius: 5px;
+  outline: none;
+
+  transition: border-color 0.3s ease;
+}
+
+.TodoForm-DateInput:focus {
+  border: 1px solid #cd9d6d;
+}
+
+.TodoForm-DateInput::-webkit-datetime-edit-year-field {
+  color: #696969;
+}
+
+.TodoForm-DateInput::-webkit-calendar-picker-indicator {
+  filter: invert(0.5);
+}
+
+.TodoForm-DateInput:hover {
+  border-color: #cd9d6d;
+  cursor: pointer;
+}
+
+.TodoForm-Button {
+  padding: 8px;
+
+  color: #fff;
+  font-size: 18px;
+  font-family: inherit;
+
+  background-color: #cd9d6d;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  outline: none;
+
+  transition: all 0.3s ease;
+}
+
+.TodoForm-Button:hover {
+  color: #cd9d6d;
+
+  background-color: transparent;
+  border-color: #cd9d6d;
+  cursor: pointer;
+}
+
+.TodoForm-Button[disabled] {
+  color: #b5b5b5;
+  font-family: Nunito, sans-serif;
+
+  background-color: rgb(105, 104, 101, 70%);
+  border-color: #696969;
+}
+
+.TodoForm-Button[disabled]:hover {
+  cursor: not-allowed;
+}
