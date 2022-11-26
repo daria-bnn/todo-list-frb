@@ -3,7 +3,6 @@ import { ref, deleteObject } from 'firebase/storage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCanArrowUp } from '@fortawesome/free-solid-svg-icons/faTrashCanArrowUp'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons/faCircleCheck'
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons/faPenToSquare'
 import dayjs from 'dayjs'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 
@@ -44,9 +43,7 @@ const Task: FC<TaskProps> = ({ data, toggleComplete, onDelete }) => {
     if (data.file) {
       const desertRef = ref(storage, data.file)
 
-      deleteObject(desertRef).then(() => {
-        console.log('delete file from storage')
-      })
+      deleteObject(desertRef)
     }
 
     onDelete(data.id)
