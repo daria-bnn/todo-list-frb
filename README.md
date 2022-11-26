@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+# Todo-List
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Demo](https://daria-bnn.github.io/todo-list-frb/)
 
-## Available Scripts
+## Установка
 
-In the project directory, you can run:
+Склонируйте репозиторий и установите зависимости
 
-### `npm start`
+```sh
+cd todo-list-frb
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Создайте файл .env (пример переменной окружения находится в файле .env.example)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Файл .env
 
-### `npm test`
+В .env в переменных **REACT_APP_FIREBASE_KEY** и **REACT_APP_FIREBASE_ID** хранится апи-ключи приложения. Для запуска проекта локально или изменения проекта вы можете создать свой проект и базу данных [Firebase](https://firebase.google.com/). Вам понадобится база данных **Firestore Database**.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Запуск приложения
 
-### `npm run build`
+А. Для запуска сервера выполните команду
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Описание проекта:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Сайт “Todo-List” для онлайн записи задач, с возможнотсью прикрепления растровых изображений и получении актуальных задач в режими реального времени, без перезагрузки страницы.
 
-### `npm run eject`
+## Структура и функционал приложения
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Главная страница приложения
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Форма с различными полями для создания задачи
+- Список задач, с прикрепленными файлами (если таковые есть) и сроком, до которого необходимо выполнить задачу.
+- Приложение реализовано как SPA
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Работа приложения
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Главная страница:
+- Для отправки задачи необходимо заполнить 2 обязательных поля (```Заголовок``` и ```Описание```)
+- Пользователь может опционально загружать файлы в форматах ```.png, .jpg, .jpeg```
+- При необходимости пользователь может выставлять дату (до которой нужно выполнить задачу)
+- При запуске приложения сразу подгружаются задачи (если они есть в базе)
+- Для каждой задачи подгружается информация о дэдлайне, заголовок и описание. Если есть - то внизу отображается подгруженная картинка.
+- Если у задачи истек срок выполнения, то дата и рамка задачи подсвчечивается красным.
+- Пользователь с помощью кнопок может либо удалить задачу, либо пометить задачу как выполненную (кнопка подсвечивается зеленым, если выполнено)
 
-## Learn More
+### Backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+В качестве бэкенда и для хранения данных используется Firestore Database от Firebase.
+Запросы к базе реализованы через REST API
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### CI/CD
+
+Демонстрационный стенд развернут на [GitHub Pages](https://pages.github.com/) с использованием инструментов CI/CD (GitHub Actions Workflow) 
+После push или merge в main приложение автоматически деплоится на [GitHub Pages](https://pages.github.com/) и доступно [здесь](https://daria-bnn.github.io/todo-list-frb/)
+
+### Технический стек приложения
+
+> - React
+> - Firebase
+> - TypeScript
