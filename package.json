@@ -2,6 +2,7 @@
   "name": "todo-list-firebase",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://daria-bnn.github.io/todo-list-frb/",
   "dependencies": {
     "@bem-react/classname": "^1.5.12",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
