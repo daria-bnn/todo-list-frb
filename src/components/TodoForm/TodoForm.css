@@ -145,6 +145,7 @@
 .TodoForm-DateInput {
   box-sizing: border-box;
   width: 150px;
+  height: 37px;
   padding: 8px;
 
   color: #696969;
