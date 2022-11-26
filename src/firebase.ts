@@ -9,12 +9,12 @@ import { getStorage } from 'firebase/storage'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyCVPTm8diUKmECU75Aa6vVD7iCir3woskc',
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: 'todo-frb.firebaseapp.com',
   projectId: 'todo-frb',
   storageBucket: 'todo-frb.appspot.com',
   messagingSenderId: '325990290599',
-  appId: '1:325990290599:web:55be0ec81213eebc157782',
+  appId: process.env.REACT_APP_FIREBASE_ID,
   measurementId: 'G-8EVQHMKK6Y',
 }
 
